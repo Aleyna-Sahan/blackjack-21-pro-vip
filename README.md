@@ -11,7 +11,6 @@ Gerçekçi 4 desteli kart dağıtım mekaniği (The Shoe), dinamik As (Ace) değ
 ---
 
 ## 📸 Ekran Görüntüsü
-
 <div align="center">
   <img src="assets/gameplay.png" alt="Blackjack 21 Pro - VIP Edition Gameplay" width="800"/>
 </div>
@@ -19,7 +18,6 @@ Gerçekçi 4 desteli kart dağıtım mekaniği (The Shoe), dinamik As (Ace) değ
 ---
 
 ## 🎯 Öne Çıkan Özellikler
-
 - **🃏 4 Desteli Birleşik Kart Sistemi (The Shoe):** Gerçekçi casino senaryosu için 4 tam destenin birleştirilmesiyle çalışır. Destedeki kart sayısı 15'in altına düştüğünde sistem oyunu kesintiye uğratmadan desteyi otomatik olarak sıfırlar ve yeniden karıştırır.
 - **⚡ Dinamik Blackjack Kuralları & Hamleler:**
   - Resimli kartlar (Vale, Kız, Papaz) **10** değerindedir.
@@ -49,3 +47,54 @@ BlackJack/
 ├── requirements.txt    # Bağımlılıklar (pygame)
 ├── .gitignore          # Git tarafından yok sayılacak dosyalar
 └── README.md           # Proje dokümantasyonu
+```
+
+### Modül Sorumlulukları
+*   **constants.py (Sabit Değişkenler ve Konfigürasyon):** Masanın yeşil tonları, kart/buton renkleri, gölgeler ve geri bildirim durumları için RGB renk tanımları. Ekran çözünürlüğü (1100x700), kart ebatları (70x100), arayüz boşlukları ve radyan cinsinden masa oturma açıları. `pygame.Rect` nesneleri ile tanımlanmış buton etkileşim koordinatları (Hit, Stand, Double, Bet +/-).
+*   **display.py (Görüntü ve Tipografi):** `init_display()` fonksiyonu ile Pygame motorunun başlatılması ve pencerenin oluşturulması. Farklı boyut ve kalınlıklarda yüklenen global Segoe UI font ailesi. Kare hızı senkronizasyonu için Pygame Clock nesnesi.
+*   **kart_sistemi.py (Kart ve Deste Mekanikleri):** `Card` sınıfı: Kart türünü (Kupa, Maça, Karo, Sinek) ve değerini modeller; `get_bj_value()` ile blackjack puanını hesaplar. `Deck` sınıfı: 4 desteyi birleştirir, `random.shuffle()` ile karıştırır; kart sayısı 15'in altına düştüğünde desteyi otomatik yenileyerek dağıtım yapar.
+*   **oyuncu_sistemi.py (Oyuncu, Bot ve Matematiksel Mantık):** `Player` sınıfı: Gerçek oyuncu ve bot verilerini (isim, bakiye, güncel bahis, el) yönetir. Bot Mantığı: `reset_hand()` içinde bakiye durumuna göre otonom bahis belirleme algoritması. Finans Denetimi: `max_bet_for()` ve `can_afford_bet()` ile -100 birime kadar borçlanma kontrolü. `calculate_hand()`: Patlamaları önlemek için As kartının 11 veya 1 değerini dinamik olarak yöneten puanlama mekanizması.
+*   **main.py (Ana Çalıştırıcı):** Sistemin giriş noktasıdır (Entry Point). Ekran bileşenlerini ayağa kaldırır (`init_display()`) ve ana oyun döngüsünü tetikleyerek oyunu başlatır.
+
+---
+
+## 🚀 Kurulum ve Çalıştırma
+
+### Gereksinimler
+*   Python 3.8 veya üzeri
+*   Pygame 2.5+
+
+### Çalıştırma Adımları
+
+1. Repoyu klonlayın:
+```bash
+git clone https://github.com/KULLANICI_ADINIZ/blackjack-21-pro-vip.git
+cd blackjack-21-pro-vip
+```
+
+2. Gerekli kütüphaneleri yükleyin:
+```bash
+pip install -r requirements.txt
+```
+
+3. Oyunu başlatın:
+```bash
+python3 main.py
+```
+
+---
+
+## 🎮 Oyun Kontrolleri
+
+| Kontrol | İşlev |
+| :--- | :--- |
+| **Hit (Kart İste)** | Desteden oyuncunun eline 1 yeni kart çeker. |
+| **Stand (Kal)** | Mevcut el puanını sabitler ve sırayı bir sonraki oyuncuya/krupiyeye devreder. |
+| **Double (Çifte Katla)** | Bahis miktarını ikiye katlar, yalnızca 1 kart çeker ve oyuncunun sırasını sonlandırır. |
+| **Bet (+ / -)** | Tur başlamadan önce bahis tutarını artırır veya azaltır. |
+| **Tur Seçimi** | Oyun başında 5 tur, 10 tur veya sınırsız mod tercihi sağlar. |
+
+---
+
+## 📜 Lisans
+Bu proje MIT Lisansı kapsamında lisanslanmıştır.
