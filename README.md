@@ -4,49 +4,55 @@
 [![Pygame](https://img.shields.io/badge/Pygame-2.5+-green?style=for-the-badge&logo=python&logoColor=white)](https://www.pygame.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-**Blackjack 21 Pro - VIP Edition** is a desktop Blackjack (21) simulation developed using Python and the **Pygame** library, following **Object-Oriented Programming (OOP)** principles, featuring a modular architecture and autonomous bot AI.
+**Blackjack 21 Pro - VIP Edition**, Python ve **Pygame** kütüphanesi kullanılarak **Nesne Yönelimli Programlama (OOP)** prensipleri doğrultusunda geliştirilmiş, modüler mimariye ve otonom bot yapay zekasına sahip masaüstü bir Blackjack (21) simülasyonudur.
 
-It offers a complete gaming experience with realistic 4-deck card distribution mechanics (The Shoe), dynamic Ace value management, bot AI that makes decisions by analyzing balance and credit limits, and a VIP casino table atmosphere.
+Gerçekçi 4 desteli kart dağıtım mekaniği (The Shoe), dinamik As (Ace) değer yönetimi, bakiye ve kredi limitlerini analiz ederek karar veren bot yapay zekası ve VIP casino masa atmosferiyle eksiksiz bir oyun deneyimi sunar.
 
 ---
 
-## 📸 Screenshot
+## 📸 Arayüz & Görseller (Showcase)
+
+| Ana Menü & Mod Seçimi | Oyun İçi Hamle Ekranı |
+|:---:|:---:|
+| <img src="assets/menu.png" width="450"/> | <img src="assets/gameplay.png" width="450"/> |
+
 <div align="center">
-  <img src="assets/gameplay.png" alt="Blackjack 21 Pro - VIP Edition Gameplay" width="800"/>
+  <h3>Tur Sonu & Sonuç Değerlendirmesi</h3>
+  <img src="assets/round_result.png" width="750"/>
 </div>
 
 ---
 
-## 🎯 Key Features
-- **🃏 4-Deck Combined Card System (The Shoe):** Operates by combining 4 full decks for a realistic casino scenario. When the number of cards in the deck drops below 15, the system automatically resets and reshuffles the deck without interrupting the game.
-- **⚡ Dynamic Blackjack Rules & Moves:**
-  - Face cards (Jack, Queen, King) are worth **10**.
-  - **Dynamic Ace Management:** When the hand total exceeds 21, the Ace value automatically drops from 11 to 1 to prevent the player from busting.
-  - **Move Options:** `Hit`, `Stand`, and `Double`.
-- **🤖 Autonomous Bot AI:** AI players at the table place autonomous bets in tiered amounts (10, 20, 50, 100) suitable for casino dynamics by analyzing their current balances and credit limits at the beginning of the round.
-- **💰 Finance & Credit Mechanics:** There is a minimum bet base of 10 units. Players have the flexibility to go into negative balance (credit/debt) down to -100 units even if their balance runs out.
-- **🔄 Customizable Game Loop:** **5 Rounds**, **10 Rounds**, or **Unlimited Game** modes offered for player selection at the startup phase.
-- **🎨 VIP Interface & Visual Feedback:** Custom green table tones at 1100x700 resolution, circular seating arrangement with radian angles, Segoe UI typography, interactive buttons, and real-time status feedback (*Win, Lose, Tie, Blackjack*).
+## 🎯 Öne Çıkan Özellikler
+- **🃏 4 Desteli Birleşik Kart Sistemi (The Shoe):** Gerçekçi casino senaryosu için 4 tam destenin birleştirilmesiyle çalışır. Destedeki kart sayısı 15'in altına düştüğünde sistem oyunu kesintiye uğratmadan desteyi otomatik olarak sıfırlar ve yeniden karıştırır.
+- **⚡ Dinamik Blackjack Kuralları & Hamleler:**
+  - Resimli kartlar (Vale, Kız, Papaz) **10** değerindedir.
+  - **Dinamik As Yönetimi:** El toplamı 21'i aştığında oyuncunun patlamasını (*bust*) önlemek için As değeri 11'den 1'e otomatik olarak düşürülür.
+  - **Hamle Seçenekleri:** `İste` (Hit), `Kal` (Stand) ve `Double` (Çifte Katla).
+- **🤖 Otonom Bot Yapay Zekası:** Masadaki yapay zeka oyuncuları (Bot Alex, Bot Sam, Bot Mia), tur başında mevcut bakiyelerini ve kredi limitlerini analiz ederek casino dinamiklerine uygun kademeli tutarlarda (10, 20, 50, 100) otonom bahis yapar.
+- **💰 Finans & Kredi Mekaniği:** Minimum 10 birimlik bahis tabanı bulunur. Oyuncular bakiyeleri tükense dahi -100 birime kadar eksiye düşebilme (kredi/borç) esnekliğine sahiptir.
+- **🔄 Özelleştirilebilir Oyun Döngüsü:** Giriş aşamasında oyuncu seçimine sunulan **5 Tur**, **10 Tur** veya **Sınırsız Oyun** modları.
+- **🎨 VIP Arayüz & Görsel Geri Bildirimler:** 1100x700 çözünürlükte özel yeşil masa tonları, radyan açılı dairesel oturma düzeni, Segoe UI tipografisi, interaktif butonlar ve anlık durum geri bildirimleri (*Kazandı, Battı, Berabere, Blackjack*).
 
 ---
 
-## 🏛️ Architecture and Modular Structure
+## 🏛️ Mimari ve Modüler Yapı
 
-The project is designed in a modular structure, adhering to the principle of *Separation of Concerns*:
+Proje, sorumlulukların ayrılığı (*Separation of Concerns*) ilkesine bağlı kalarak modüler bir yapıda tasarlanmıştır:
 
 ```text
 BlackJack/
-├── assets/             # In-game screenshots and visual materials
-├── game/               # Game loop and round flow controls
-├── ui/                 # User interface drawing and rendering components
-├── constants.py        # Color palettes, geometric constants, button coordinates
-├── display.py          # Graphics engine initializer, font management, FPS Clock
-├── kart_sistemi.py     # Card and Deck OOP classes, deck management
-├── oyuncu_sistemi.py   # Player class, bot AI, dynamic hand calculation
-├── main.py             # Application Entry Point
-├── requirements.txt    # Dependencies (pygame)
-├── .gitignore          # Files to be ignored by Git
-└── README.md           # Project documentation
+├── assets/             # Oyun içi ekran görüntüleri (menu, gameplay, round_result)
+├── game/               # Oyun döngüsü ve tur akış kontrolleri
+├── ui/                 # Kullanıcı arayüzü çizim ve render bileşenleri
+├── constants.py        # Renk paletleri, geometrik sabitler, buton koordinatları
+├── display.py          # Grafik motoru başlatıcı, font yönetimi, FPS Clock
+├── kart_sistemi.py     # Card ve Deck OOP sınıfları, deste yönetimi
+├── oyuncu_sistemi.py   # Player sınıfı, bot yapay zekası, dinamik el hesabı
+├── main.py             # Uygulama giriş noktası (Entry Point)
+├── requirements.txt    # Bağımlılıklar (pygame)
+├── .gitignore          # Git tarafından yok sayılacak dosyalar
+└── README.md           # Proje dokümantasyonu
 ```
 
 ### Module Responsibilities
