@@ -68,7 +68,7 @@ BlackJack/
 
 1. Repoyu klonlayın:
 ```bash
-git clone https://github.com/KULLANICI_ADINIZ/blackjack-21-pro-vip.git
+git clone https://github.com/Aleyna-Sahan/blackjack-21-pro-vip.git
 cd blackjack-21-pro-vip
 ```
 
